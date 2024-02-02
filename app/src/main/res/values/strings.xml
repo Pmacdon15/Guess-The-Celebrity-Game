@@ -3,4 +3,7 @@
     <string name="guess_the_celebrity_game">Guess The Celebrity Game</string>
     <string name="about_the_game">About the Game</string>
     <string name="start_game">Start Game</string>
+    <string name="next">Next</string>
+    <string name="cosby">Bill Cosby</string>
+    <string name="correct">Correct!</string>
 </resources>
