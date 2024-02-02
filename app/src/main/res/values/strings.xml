@@ -8,4 +8,6 @@
     <string name="correct">Correct!</string>
     <string name="finish">Finish The Game</string>
     <string name="incorrect">Incorrect</string>
+    <string name="about_game">\ \ \ \ This game has awkward celebrity photos. The user is allowed to guess as many times as they want and the score will be correct answers minus incorrect answers. Click the next button to move on to the next photo. There will be a score page after the last photo.</string>
+    <string name="menu">Menu</string>
 </resources>

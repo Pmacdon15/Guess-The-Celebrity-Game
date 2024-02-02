@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-//        Button buttonAboutGame = findViewById(R.id.button_AboutGame);
-//        buttonAboutGame.setOnClickListener(view -> {
-//            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-//            startActivity(intent);
-//        });
+        Button buttonAboutGame = findViewById(R.id.button_AboutGame);
+        buttonAboutGame.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent);
+        });
     }
 }
