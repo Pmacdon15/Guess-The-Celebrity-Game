@@ -5,7 +5,6 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -14,10 +13,6 @@ import java.util.Collections;
 public class GameActivity extends AppCompatActivity {
 
     private ImageView imageViewCelebrity;
-    private Button buttonAnswer1;
-    private Button buttonAnswer2;
-    private Button buttonAnswer3;
-    private Button buttonAnswer4;
     private Button buttonNext;
     //private Button[] buttons;
     private ArrayList<Button> buttons;
@@ -40,10 +35,10 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         imageViewCelebrity = findViewById(R.id.imageView_Celebrity);
-        buttonAnswer1 = findViewById(R.id.button_Answer1);
-        buttonAnswer2 = findViewById(R.id.button_Answer2);
-        buttonAnswer3 = findViewById(R.id.button_Answer3);
-        buttonAnswer4 = findViewById(R.id.button_Answer4);
+        Button buttonAnswer1 = findViewById(R.id.button_Answer1);
+        Button buttonAnswer2 = findViewById(R.id.button_Answer2);
+        Button buttonAnswer3 = findViewById(R.id.button_Answer3);
+        Button buttonAnswer4 = findViewById(R.id.button_Answer4);
         buttonNext = findViewById(R.id.button_Next);
 
         // Initialize the buttons ArrayList
