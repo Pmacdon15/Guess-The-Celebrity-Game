@@ -7,4 +7,5 @@
     <string name="cosby">Bill Cosby</string>
     <string name="correct">Correct!</string>
     <string name="finish">Finish The Game</string>
+    <string name="incorrect">Incorrect</string>
 </resources>

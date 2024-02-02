@@ -16,6 +16,7 @@ public class GameActivity extends AppCompatActivity {
     private Button buttonAnswer3;
     private Button buttonAnswer4;
     private Button buttonNext;
+    private Button[] buttons;
     private final String[] correctGuesses = {"Bill Cosby", "Mike Tyson", "Kid Rock", "Robert Downey Jr.","Charlie Sheen"};
     private final int[] resourceFiles = {R.drawable.cosby, R.drawable.tyson, R.drawable.kidrock, R.drawable.rdj, R.drawable.charliesheen};
 
@@ -41,6 +42,9 @@ public class GameActivity extends AppCompatActivity {
         buttonAnswer4 = findViewById(R.id.button_Answer4);
         buttonNext = findViewById(R.id.button_Next);
 
+        // Initialize the buttons array after setContentView()
+        buttons = new Button[]{buttonAnswer1, buttonAnswer2, buttonAnswer3, buttonAnswer4};
+
         setupButtons(0);
 
         int[] round = {0}; // Initialize with an array containing a single element
@@ -49,13 +53,12 @@ public class GameActivity extends AppCompatActivity {
             round[0]++;
             setupButtons(round[0]);
         });
-
     }
 
 
     private void setupButtons(int round) {
 
-        if (round == 5) {
+        if (round == 4) {
             buttonNext.setText(R.string.finish);
         }
 
@@ -70,17 +73,20 @@ public class GameActivity extends AppCompatActivity {
         buttonAnswer3.setBackgroundColor(getResources().getColor(R.color.blue, null));
         buttonAnswer4.setBackgroundColor(getResources().getColor(R.color.blue, null));
 
-
-        buttonAnswer1.setOnClickListener(view -> {
-            buttonAnswer1.setText(R.string.correct);
-            buttonAnswer2.setText("");
-            buttonAnswer3.setText("");
-            buttonAnswer4.setText("");
-            buttonAnswer1.setBackgroundColor(getResources().getColor(R.color.green, null));
-            buttonAnswer2.setBackgroundColor(getResources().getColor(R.color.red, null));
-            buttonAnswer3.setBackgroundColor(getResources().getColor(R.color.red, null));
-            buttonAnswer4.setBackgroundColor(getResources().getColor(R.color.red, null));
-        });
+        // Set up click listeners for each button
+        for (Button button : buttons) {
+            button.setOnClickListener(view -> {
+                if (button.getText().toString().equals(correctGuesses[round])) {
+                    // This is the correct answer
+                    button.setBackgroundColor(getResources().getColor(R.color.green, null));
+                    button.setText(R.string.correct);
+                } else {
+                    // This is not the correct answer
+                    button.setBackgroundColor(getResources().getColor(R.color.red, null));
+                    button.setText(R.string.incorrect);
+                }
+            });
+        }
 
     }
 
