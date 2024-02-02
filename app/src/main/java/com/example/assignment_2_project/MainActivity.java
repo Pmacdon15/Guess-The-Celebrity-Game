@@ -7,23 +7,16 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button buttonStartGame;
-    private Button buttonAboutGame;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonStartGame = findViewById(R.id.button_StartGame);
-        buttonStartGame.setOnClickListener(view -> {
-            setContentView(R.layout.activity_game);
-        });
+        Button buttonStartGame = findViewById(R.id.button_StartGame);
+        buttonStartGame.setOnClickListener(view -> setContentView(R.layout.activity_game));
 
-        buttonAboutGame = findViewById(R.id.button_AboutGame);
-        buttonAboutGame.setOnClickListener(view -> {
-            setContentView(R.layout.activity_about);
-        });
+        Button buttonAboutGame = findViewById(R.id.button_AboutGame);
+        buttonAboutGame.setOnClickListener(view -> setContentView(R.layout.activity_about));
 
 
     }
