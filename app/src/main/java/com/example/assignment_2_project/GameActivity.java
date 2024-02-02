@@ -16,8 +16,8 @@ public class GameActivity extends AppCompatActivity {
     private Button buttonAnswer3;
     private Button buttonAnswer4;
     private Button buttonNext;
-    private final String[] correctGuesses = {"Bill Cosby", "Mike Tyson"};
-    private final int[] resourceFiles = {R.drawable.cosby, R.drawable.tyson};
+    private final String[] correctGuesses = {"Bill Cosby", "Mike Tyson", "Kid Rock", "Robert Downey Jr.","Charlie Sheen"};
+    private final int[] resourceFiles = {R.drawable.cosby, R.drawable.tyson, R.drawable.kidrock, R.drawable.rdj, R.drawable.charliesheen};
 
     // 2D array of incorrect guesses for each round
     private final String[][] incorrectGuesses = {
@@ -54,6 +54,11 @@ public class GameActivity extends AppCompatActivity {
 
 
     private void setupButtons(int round) {
+
+        if (round == 5) {
+            buttonNext.setText(R.string.finish);
+        }
+
         imageViewCelebrity.setImageResource(resourceFiles[round]);
         buttonAnswer1.setText(correctGuesses[round]);
         buttonAnswer2.setText(incorrectGuesses[round][0]);
