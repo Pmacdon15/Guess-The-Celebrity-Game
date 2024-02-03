@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#1984BF"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/guess_the_celebrity_game"
+        app:titleTextColor="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+
+        <ImageView
+            android:id="@+id/imageView_Celebrity"
+            android:layout_width="247dp"
+            android:layout_height="282dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="30dp"
+            android:contentDescription="@string/images_to_the_guess_who_they_are"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/cosby" />
+
+        <LinearLayout
+            android:layout_width="366dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="60dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_Answer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="#1984BF"
+                android:text="@string/filler"
+                android:textColor="#000000"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <Button
+                android:id="@+id/button_Answer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="#1984BF"
+                android:text="@string/filler"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/button_Answer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="#1984BF"
+                android:text="@string/filler"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/button_Answer4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="#1984BF"
+                android:text="@string/filler"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/button_Next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="#2DC312"
+                android:minHeight="48dp"
+                android:text="@string/next"
+                android:textColor="#4E342E" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
