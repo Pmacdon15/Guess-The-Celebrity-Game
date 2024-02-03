@@ -10,4 +10,9 @@
     <string name="incorrect">Incorrect</string>
     <string name="about_game">\ \ \ \ This game has awkward celebrity photos. The user is allowed to guess as many times as they want and the score will be correct answers minus incorrect answers. Click the next button to move on to the next photo. There will be a score page after the last photo.</string>
     <string name="menu">Menu</string>
+    <string name="images_to_the_guess_who_they_are">Images to the guess who they are.</string>
+    <string name="your_score_will_go_here">Your score will go here</string>
+    <string name="filler">filler</string>
+    <string name="score_message">You\'ve got %1$d correct answers and %2$d incorrect answers. Your score is %3$d.</string>
+
 </resources>

@@ -27,6 +27,9 @@
         <activity
             android:name=".AboutActivity"
             android:exported="true" />
+        <activity
+            android:name=".ScoreActivity"
+            android:exported="true" />
 
     </application>
 

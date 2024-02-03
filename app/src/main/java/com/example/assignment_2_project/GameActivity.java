@@ -1,5 +1,6 @@
 package com.example.assignment_2_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -14,12 +15,12 @@ public class GameActivity extends AppCompatActivity {
 
     private ImageView imageViewCelebrity;
     private Button buttonNext;
-    //private Button[] buttons;
     private ArrayList<Button> buttons;
-    //private final String[] correctGuesses = {"Bill Cosby", "Mike Tyson", "Kid Rock", "Robert Downey Jr.","Charlie Sheen"};
     private final int[] resourceFiles = {R.drawable.cosby, R.drawable.tyson, R.drawable.kidrock, R.drawable.rdj, R.drawable.charliesheen};
+    private int correctAnswer = 0; // Index of the correct answer
+    private int incorrectAnswer = 0; // Index of the incorrect answer
 
-    // 2D array of incorrect guesses for each round
+    // 2D array of guesses for each round
     private final String[][] guesses = {
             {"Bill Cosby", "Bill Nye", "Bill Gates", "Bill Clinton"},
             {"Mike Tyson", "Bill Murray", "Billie Eilish", "Billie Joe Armstrong"},
@@ -27,8 +28,6 @@ public class GameActivity extends AppCompatActivity {
             {"Robert Downey Jr.", "Billy Idol", "Billy Bob Thornton", "Billy Crystal"},
             {"Charlie Sheen", "Billy Dee Williams", "Billy Zane", "Billy Corgan"}
     };
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,14 +47,12 @@ public class GameActivity extends AppCompatActivity {
         buttons.add(buttonAnswer3);
         buttons.add(buttonAnswer4);
 
-        // Initialize the buttons array after setContentView()
-        //buttons = new Button[]{buttonAnswer1, buttonAnswer2, buttonAnswer3, buttonAnswer4};
-
+        // Set up the buttons for the first round
         setupButtons(0);
 
         int[] round = {0}; // Initialize with an array containing a single element
         buttonNext.setOnClickListener(view -> {
-            Log.d("GameActivity", "Next button clicked");
+            // Log.d("GameActivity", "Next button clicked");
             round[0]++;
             setupButtons(round[0]);
         });
@@ -66,6 +63,12 @@ public class GameActivity extends AppCompatActivity {
         // Change the text of the next button to "Finish" if it's the last round
         if (round == 4) {
             buttonNext.setText(R.string.finish);
+            buttonNext.setOnClickListener(view -> {
+                Intent intent = new Intent(GameActivity.this, ScoreActivity.class);
+                intent.putExtra("correct", correctAnswer);
+                intent.putExtra("incorrect", incorrectAnswer);
+                startActivity(intent);
+            });
         }
 
         // Set the image of the celebrity
@@ -91,10 +94,14 @@ public class GameActivity extends AppCompatActivity {
                     // This is the correct answer
                     button.setBackgroundColor(getResources().getColor(R.color.green, null));
                     button.setText(R.string.correct);
+                    correctAnswer++;
+                    Log.d("correctAnswer", "Correct answer: " + correctAnswer);
                 } else {
                     // This is not the correct answer
                     button.setBackgroundColor(getResources().getColor(R.color.red, null));
                     button.setText(R.string.incorrect);
+                    incorrectAnswer++;
+                    Log.d("incorrectAnswer", "Incorrect answer: " + incorrectAnswer);
                 }
             });
         }
