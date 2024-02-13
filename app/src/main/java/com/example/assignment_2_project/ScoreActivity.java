@@ -37,7 +37,8 @@ public class ScoreActivity extends AppCompatActivity {
 
         Button buttonMenu = findViewById(R.id.button_Menu);
         buttonMenu.setOnClickListener(view -> {
-            Intent intent = new Intent(ScoreActivity.this, MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         });
     }
