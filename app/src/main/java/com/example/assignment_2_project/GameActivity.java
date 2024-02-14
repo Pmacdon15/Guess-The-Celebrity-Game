@@ -20,8 +20,9 @@ public class GameActivity extends AppCompatActivity {
     private Button buttonNext;
     private ArrayList<Button> buttons;
     private final int[] resourceFiles = {R.drawable.cosby, R.drawable.tyson, R.drawable.kidrock, R.drawable.rdj, R.drawable.charliesheen};
-    private int correctAnswer = 0; // Index of the correct answer
-    private int incorrectAnswer = 0; // Index of the incorrect answer
+    private static int correctAnswer = 0; // Index of the correct answer
+    private static int incorrectAnswer = 0; // Index of the incorrect answer
+    private static final int[] round = {0}; // Index of the current round
 
     // 2D array of guesses for each round
     private final String[][] guesses = {
@@ -31,6 +32,10 @@ public class GameActivity extends AppCompatActivity {
             {"Robert Downey Jr.", "Billy Idol", "Billy Bob Thornton", "Billy Crystal"},
             {"Charlie Sheen", "Billy Dee Williams", "Billy Zane", "Billy Corgan"}
     };
+
+    public static void resetRound() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +62,10 @@ public class GameActivity extends AppCompatActivity {
         buttons.add(buttonAnswer4);
 
         // Set up the buttons for the first round
-        setupButtons(0);
+        Log.d("GameActivity", "Setting up buttons for round " + round[0]);
+        setupButtons(round[0]);
 
-        int[] round = {0}; // Initialize with an array containing a single element
+
         buttonNext.setOnClickListener(view -> {
             // Log.d("GameActivity", "Next button clicked");
             round[0]++;
@@ -76,6 +82,7 @@ public class GameActivity extends AppCompatActivity {
                 Intent intent = new Intent(GameActivity.this, ScoreActivity.class);
                 intent.putExtra("correct", correctAnswer);
                 intent.putExtra("incorrect", incorrectAnswer);
+
                 startActivity(intent);
             });
         }
@@ -115,6 +122,11 @@ public class GameActivity extends AppCompatActivity {
             });
         }
 
+    }
+    public static void resetGame() {
+        round[0] = 0;
+        correctAnswer = 0;
+        incorrectAnswer = 0;
     }
 
 }
