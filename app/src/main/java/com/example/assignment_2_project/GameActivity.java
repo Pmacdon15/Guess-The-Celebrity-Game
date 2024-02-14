@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class GameActivity extends AppCompatActivity {
-
     private ImageView imageViewCelebrity;
     private Button buttonNext;
     private static ArrayList<Button> buttons;
@@ -63,10 +62,8 @@ public class GameActivity extends AppCompatActivity {
         buttons.add(buttonAnswer4);
 
         // Restore the state if available
-        if (savedInstanceState != null) {
-            onRestoreInstanceState(savedInstanceState);
-        } else {
-            // Set up the buttons for the first round
+        if (savedInstanceState == null) {
+            // Set up the buttons for the first round only if savedInstanceState is null
             Log.d("GameActivity", "Setting up buttons for round " + round[0]);
             setupButtons(round[0]);
         }
@@ -123,9 +120,13 @@ public class GameActivity extends AppCompatActivity {
 
         // Shuffling the buttons
         Collections.shuffle(buttons);
-
-
-
+        // Below allows colors to be preserved when rotating the device
+        if (!flagSavedInstance) {
+            // Loop through the buttons and set the text
+            for (int i = 0; i < buttons.size(); i++) {
+                buttons.get(i).setText(guesses[round][i]);
+            }
+        }
 
         // Set the button color blue for each button
         for (Button button : buttons) {
@@ -139,13 +140,6 @@ public class GameActivity extends AppCompatActivity {
             else
                 button.setBackgroundColor(getResources().getColor(R.color.blue, null));
         }
-        // Below allows colors to be preserved when rotating the device
-       if (!flagSavedInstance) {
-           // Loop through the buttons and set the text
-           for (int i = 0; i < buttons.size(); i++) {
-               buttons.get(i).setText(guesses[round][i]);
-           }
-       }
 
         // Set up click listeners for each button
         for (Button button : buttons) {
@@ -165,12 +159,14 @@ public class GameActivity extends AppCompatActivity {
                 }
             });
         }
+        flagSavedInstance = false;
 
     }
     public static void resetGame() {
         round[0] = 0;
         correctAnswer = 0;
         incorrectAnswer = 0;
+        flagSavedInstance = false;
     }
 
 }
