@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -18,13 +19,16 @@ public class GameActivity extends AppCompatActivity {
 
     private ImageView imageViewCelebrity;
     private Button buttonNext;
-    private ArrayList<Button> buttons;
+    private static ArrayList<Button> buttons;
     private final int[] resourceFiles = {R.drawable.cosby, R.drawable.tyson, R.drawable.kidrock, R.drawable.rdj, R.drawable.charliesheen};
     private static int correctAnswer = 0; // Index of the correct answer
     private static int incorrectAnswer = 0; // Index of the incorrect answer
     private static final int[] round = {0}; // Index of the current round
 
+    private static boolean flagSavedInstance = false;
+
     // 2D array of guesses for each round
+    // First Name in each row is the correct answer
     private final String[][] guesses = {
             {"Bill Cosby", "Bill Nye", "Bill Gates", "Bill Clinton"},
             {"Mike Tyson", "Bill Murray", "Billie Eilish", "Billie Joe Armstrong"},
@@ -32,9 +36,6 @@ public class GameActivity extends AppCompatActivity {
             {"Robert Downey Jr.", "Billy Idol", "Billy Bob Thornton", "Billy Crystal"},
             {"Charlie Sheen", "Billy Dee Williams", "Billy Zane", "Billy Corgan"}
     };
-
-    public static void resetRound() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +62,14 @@ public class GameActivity extends AppCompatActivity {
         buttons.add(buttonAnswer3);
         buttons.add(buttonAnswer4);
 
-        // Set up the buttons for the first round
-        Log.d("GameActivity", "Setting up buttons for round " + round[0]);
-        setupButtons(round[0]);
-
+        // Restore the state if available
+        if (savedInstanceState != null) {
+            onRestoreInstanceState(savedInstanceState);
+        } else {
+            // Set up the buttons for the first round
+            Log.d("GameActivity", "Setting up buttons for round " + round[0]);
+            setupButtons(round[0]);
+        }
 
         buttonNext.setOnClickListener(view -> {
             // Log.d("GameActivity", "Next button clicked");
@@ -72,7 +77,34 @@ public class GameActivity extends AppCompatActivity {
             setupButtons(round[0]);
         });
     }
+    // testing
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        flagSavedInstance = true;
+        // Save the text of each button
+        for (int i = 0; i < buttons.size(); i++) {
+            outState.putString("buttonText" + i, buttons.get(i).getText().toString());
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore the state only if buttons ArrayList is initialized
+        if (buttons != null) {
+            // Restore the text of each button
+            for (int i = 0; i < buttons.size(); i++) {
+                String buttonText = savedInstanceState.getString("buttonText" + i);
+                buttons.get(i).setText(buttonText);
+            }
+        }
+        setupButtons(round[0]);
+    }
+
+    // testing
 
     private void setupButtons(int round) {
         // Change the text of the next button to "Finish" if it's the last round
@@ -82,7 +114,6 @@ public class GameActivity extends AppCompatActivity {
                 Intent intent = new Intent(GameActivity.this, ScoreActivity.class);
                 intent.putExtra("correct", correctAnswer);
                 intent.putExtra("incorrect", incorrectAnswer);
-
                 startActivity(intent);
             });
         }
@@ -93,15 +124,28 @@ public class GameActivity extends AppCompatActivity {
         // Shuffling the buttons
         Collections.shuffle(buttons);
 
-        // Loop through the buttons and set the text
-        for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).setText(guesses[round][i]);
-        }
+
+
 
         // Set the button color blue for each button
         for (Button button : buttons) {
-            button.setBackgroundColor(getResources().getColor(R.color.blue, null));
+            Log.d("GameActivity", "Setting up button " + button.getText().toString());
+            if(button.getText().toString().equals("Correct!") )
+                button.setBackgroundColor(getResources().getColor(R.color.green, null));
+
+            else if(button.getText().toString().equals("Incorrect") )
+                button.setBackgroundColor(getResources().getColor(R.color.red, null));
+
+            else
+                button.setBackgroundColor(getResources().getColor(R.color.blue, null));
         }
+        // Below allows colors to be preserved when rotating the device
+       if (!flagSavedInstance) {
+           // Loop through the buttons and set the text
+           for (int i = 0; i < buttons.size(); i++) {
+               buttons.get(i).setText(guesses[round][i]);
+           }
+       }
 
         // Set up click listeners for each button
         for (Button button : buttons) {
