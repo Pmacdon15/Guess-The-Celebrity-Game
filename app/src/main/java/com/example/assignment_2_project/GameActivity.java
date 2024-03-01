@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
     private ImageView imageViewCelebrity;
@@ -27,13 +29,20 @@ public class GameActivity extends AppCompatActivity {
     private static final int[] round = {0}; // Index of the current round
 
     // 2D array of guesses for each round
-    // First Name in each row is the correct answer
     private final String[][] guesses = {
             {"Bill Cosby", "Bill Nye", "Bill Gates", "Bill Clinton"},
             {"Mike Tyson", "Bill Murray", "Billie Eilish", "Billie Joe Armstrong"},
             {"Kid Rock", "Billie Holiday", "Billy Joel", "Billy Ray Cyrus"},
             {"Robert Downey Jr.", "Billy Idol", "Billy Bob Thornton", "Billy Crystal"},
             {"Charlie Sheen", "Billy Dee Williams", "Billy Zane", "Billy Corgan"}
+    };
+
+    private static final String[] correctGuesses={
+            "Bill Cosby",
+            "Mike Tyson",
+            "Kid Rock",
+            "Robert Downey Jr.",
+            "Charlie Sheen"
     };
 
     @Override
@@ -77,12 +86,12 @@ public class GameActivity extends AppCompatActivity {
                 String buttonText = savedInstanceState.getString("buttonText" + i);
                 buttons.get(i).setText(buttonText);
             }
+            setButtonColor();
+            setOnClicks();
             setNextButtonIfLastRound();
             setImageViewCelebrity();
-            setButtonColor();
         }
     }
-    // testing
 
     // Change status bar color
     public void setHeaderColor() {
@@ -126,7 +135,7 @@ public class GameActivity extends AppCompatActivity {
         // Set up click listeners for each button
         for (Button button : buttons) {
             button.setOnClickListener(view -> {
-                if (button.getText().toString().equals(guesses[round[0]][0])) {
+                if (button.getText().toString().equals(correctGuesses[round[0]])) {
                     // This is the correct answer
                     button.setBackgroundColor(getResources().getColor(R.color.green, null));
                     button.setText(R.string.correct);
@@ -152,7 +161,12 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupButtonsTxtNotOnRotate() {
         // Shuffling the buttons
-        Collections.shuffle(buttons);
+        // Shuffle the names within each row
+        for (String[] row : guesses) {
+            List<String> names = Arrays.asList(row);
+            Collections.shuffle(names);
+            //row = names.toArray(new String[0]);
+        }
         // Loop through the buttons and set the text
         for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setText(guesses[round[0]][i]);
