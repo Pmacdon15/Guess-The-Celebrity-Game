@@ -55,14 +55,15 @@ public class GameActivity extends AppCompatActivity {
         setHeaderColor();
         setFields();
         createButtonArray();
-        setButtonColor();
-        setOnClicks();
-        setNextButton();
-        setNextButtonIfLastRound();
-        setImageViewCelebrity();
 
-        // Restore the state if available
-        if (savedInstanceState == null) setupButtonsTxtNotOnRotate();
+        // Restore the state if available if not call these in the on restore instance state
+        if (savedInstanceState == null) {
+            setupButtonsTxtNotOnRotate();
+            setButtonColor();
+            setOnClicks();
+            setNextButton();
+            setImageViewCelebrity();
+        }
 
     }
 
@@ -88,6 +89,7 @@ public class GameActivity extends AppCompatActivity {
             }
             setButtonColor();
             setOnClicks();
+            setNextButton();
             setNextButtonIfLastRound();
             setImageViewCelebrity();
         }
@@ -160,7 +162,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setupButtonsTxtNotOnRotate() {
-        // Shuffling the buttons
         // Shuffle the names within each row
         for (String[] row : guesses) {
             List<String> names = Arrays.asList(row);
