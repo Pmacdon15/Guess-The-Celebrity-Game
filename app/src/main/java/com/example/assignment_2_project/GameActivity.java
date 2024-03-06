@@ -19,7 +19,7 @@ import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
     private ImageView imageViewCelebrity;
-    private Button buttonNext;
+    private Button buttonNext, buttonBack;
     private Button buttonAnswer1, buttonAnswer2, buttonAnswer3, buttonAnswer4;
     private ArrayList<Button> buttons;
     private final int[] resourceFiles = {R.drawable.cosby, R.drawable.tyson, R.drawable.kidrock, R.drawable.rdj, R.drawable.charliesheen};
@@ -37,7 +37,7 @@ public class GameActivity extends AppCompatActivity {
             {"Charlie Sheen", "Billy Dee Williams", "Billy Zane", "Billy Corgan"}
     };
 
-    private static final String[] correctGuesses={
+    private static final String[] correctGuesses = {
             "Bill Cosby",
             "Mike Tyson",
             "Kid Rock",
@@ -62,6 +62,7 @@ public class GameActivity extends AppCompatActivity {
             setButtonColor();
             setOnClicks();
             setNextButton();
+            setButtonBack();
             setImageViewCelebrity();
         }
 
@@ -87,11 +88,10 @@ public class GameActivity extends AppCompatActivity {
                 String buttonText = savedInstanceState.getString("buttonText" + i);
                 buttons.get(i).setText(buttonText);
             }
-            setButtonColor();
-            setOnClicks();
+
             setNextButton();
-            setNextButtonIfLastRound();
-            setImageViewCelebrity();
+
+
         }
     }
 
@@ -110,6 +110,7 @@ public class GameActivity extends AppCompatActivity {
         buttonAnswer3 = findViewById(R.id.button_Answer3);
         buttonAnswer4 = findViewById(R.id.button_Answer4);
         buttonNext = findViewById(R.id.button_Next);
+        buttonBack = findViewById(R.id.button_Back);
     }
 
     public void createButtonArray() {
@@ -185,6 +186,30 @@ public class GameActivity extends AppCompatActivity {
             setNextButtonIfLastRound();
             setImageViewCelebrity();
             setButtonColor();
+
+
+        });
+    }
+
+    public void setButtonBack() {
+        // Set up the back button
+        buttonBack.setOnClickListener(view -> {
+
+            Log.d("GameActivity", "Setting up buttons for round " + round[0]);
+            // Set up the buttons for the next round
+            setupButtonsTxtNotOnRotate();
+            if (round[0] == 0) {
+
+                Intent intent = new Intent(GameActivity.this, MainActivity.class);
+                finish();
+                startActivity(intent);
+
+            }
+            // Decrement the round
+            round[0]--;
+            setNextButtonIfLastRound();
+            setImageViewCelebrity();
+            setButtonColor();
         });
     }
 
@@ -200,6 +225,15 @@ public class GameActivity extends AppCompatActivity {
             });
         }
     }
+//    public void setBackButtonIfFirstRound() {
+//        if (round[0] == 0) {
+//            buttonBack.setOnClickListener(view -> {
+//                Intent intent = new Intent(GameActivity.this, MainActivity.class);
+//                finish();
+//                startActivity(intent);
+//            });
+//        }
+//    }
 
     public static void resetGame() {
         round[0] = 0;

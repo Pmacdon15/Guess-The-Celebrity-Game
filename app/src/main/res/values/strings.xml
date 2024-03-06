@@ -14,5 +14,6 @@
     <string name="your_score_will_go_here">Your score will go here</string>
     <string name="filler">filler</string>
     <string name="score_message">You\'ve got %1$d correct answers and %2$d incorrect answers. Your score is %3$d.</string>
+    <string name="back">Back</string>
 
 </resources>
