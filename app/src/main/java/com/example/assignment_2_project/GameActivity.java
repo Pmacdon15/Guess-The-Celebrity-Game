@@ -186,6 +186,7 @@ public class GameActivity extends AppCompatActivity {
             setNextButtonIfLastRound();
             setImageViewCelebrity();
             setButtonColor();
+            setOnClicks();
 
 
         });
@@ -195,7 +196,7 @@ public class GameActivity extends AppCompatActivity {
         // Set up the back button
         buttonBack.setOnClickListener(view -> {
 
-            Log.d("GameActivity", "Setting up buttons for round " + round[0]);
+
             // Set up the buttons for the next round
             setupButtonsTxtNotOnRotate();
             if (round[0] == 0) {
@@ -207,9 +208,12 @@ public class GameActivity extends AppCompatActivity {
             }
             // Decrement the round
             round[0]--;
+            Log.d("GameActivity", "Setting up buttons for round " + round[0]);
             setNextButtonIfLastRound();
+            setupButtonsTxtNotOnRotate();
             setImageViewCelebrity();
             setButtonColor();
+            setOnClicks();
         });
     }
 
