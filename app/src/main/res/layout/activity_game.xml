@@ -14,6 +14,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/guess_the_celebrity_game"
@@ -33,7 +34,7 @@
             android:layout_width="247dp"
             android:layout_height="282dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:contentDescription="@string/images_to_the_guess_who_they_are"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/cosby" />
@@ -43,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/darkGray"
@@ -95,9 +96,9 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:backgroundTint="#303E6A"
+                android:backgroundTint="#606370"
                 android:text="@string/back"
-                android:textColor="#82B1FF" />
+                android:textColor="#000000" />
 
             <Button
                 android:id="@+id/button_Next"
@@ -116,7 +117,6 @@
                 android:textColor="#3E2723" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>

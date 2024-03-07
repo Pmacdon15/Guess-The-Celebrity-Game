@@ -127,11 +127,16 @@ public class GameActivity extends AppCompatActivity {
     public void setButtonColor() {
         for (Button button : buttons) {
             Log.d("GameActivity", "Setting up button " + button.getText().toString());
-            if (button.getText().toString().equals("Correct!"))
+            if (button.getText().toString().equals("Correct!")){
                 button.setBackgroundColor(getResources().getColor(R.color.green, null));
-            else if (button.getText().toString().equals("Incorrect"))
+                // Turn off on click listener for the correct button
+                button.setOnClickListener(null);
+            }
+            else if (button.getText().toString().equals("Incorrect")) {
                 button.setBackgroundColor(getResources().getColor(R.color.red, null));
-            else
+                // Turn off on click listener for the correct button
+                button.setOnClickListener(null);
+            } else
                 button.setBackgroundColor(getResources().getColor(R.color.darkGray, null));
         }
     }
@@ -216,8 +221,8 @@ public class GameActivity extends AppCompatActivity {
     private void commonSetUp() {
         setNextButtonIfLastRound();
         setImageViewCelebrity();
-        setButtonColor();
         setOnClicks();
+        setButtonColor();
     }
 
     public void setNextButtonIfLastRound() {
