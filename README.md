@@ -23,6 +23,6 @@ Dive into the world of celebrity mug shots with our addictive Android game. Gues
 - Better UI
 
 # Emulators
-The app has been tested on a real device (Note 20 Ultra) and the Pixel_3a_API_34 emulator in Android Studio. The layout, using vertical constraints as the parent layout, has been tested on these devices and found to work well..
+The app has been tested on a real device (Note 20 Ultra) and the Pixel_3a_API_34 emulator in Android Studio. The layout, using vertical constraints as the parent layout, has been tested on these devices and found to work well.
 
 
