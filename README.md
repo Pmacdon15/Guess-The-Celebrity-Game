@@ -1,5 +1,5 @@
 # Guess the celebrity game
-Dive into the world of celebrity mug shots with our addictive Android game. Guess the famous faces from their humorous photos, choose from four options for each, and track your score. Enjoy unlimited guessing, seamless navigation, and saved state on rotation for uninterrupted fun. Challenge your pop culture knowledge and have a blast with my entertaining app
+Dive into the world of celebrity mug shots with our addictive Android game. Guess the famous faces from their humorous photos, choose from four options for each, and track your score. Enjoy unlimited guessing, seamless navigation, and saved state on rotation for uninterrupted fun. Challenge your pop culture knowledge and have a blast with my entertaining app.
 
 ## Table of Contents
 - [Features](#Features)
