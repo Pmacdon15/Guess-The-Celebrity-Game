@@ -27,6 +27,7 @@ public class GameActivity extends AppCompatActivity {
     private static int incorrectAnswer = 0; // Index of the incorrect answer
     // To use lambda expression, the variable must be final so created an array to store the value which can be changed
     private static final int[] round = {0}; // Index of the current round
+    private String[][] ButtonTextSaved = new String[5][4];
 
     // 2D array of guesses for each round
     private final String[][] guesses = {
@@ -59,11 +60,11 @@ public class GameActivity extends AppCompatActivity {
         // Restore the state if available if not call these in the on restore instance state
         if (savedInstanceState == null) {
             setupButtonsTxtNotOnRotate();
-            setButtonColor();
-            setOnClicks();
-            setNextButton();
-            setButtonBack();
-            setImageViewCelebrity();
+            setUpNextButton();
+            commonSetUp();
+
+            setUpNextButton();
+            setUpBackButton();
         }
 
     }
@@ -89,7 +90,8 @@ public class GameActivity extends AppCompatActivity {
                 buttons.get(i).setText(buttonText);
             }
 
-            setNextButton();
+            setUpNextButton();
+            setUpBackButton();
 
 
         }
@@ -130,7 +132,7 @@ public class GameActivity extends AppCompatActivity {
             else if (button.getText().toString().equals("Incorrect"))
                 button.setBackgroundColor(getResources().getColor(R.color.red, null));
             else
-                button.setBackgroundColor(getResources().getColor(R.color.blue, null));
+                button.setBackgroundColor(getResources().getColor(R.color.darkGray, null));
         }
     }
 
@@ -173,48 +175,49 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setText(guesses[round[0]][i]);
         }
+        //saveButtonText();
     }
 
-    public void setNextButton() {
-        // Set up the next button
+    public void setUpNextButton() {
         buttonNext.setOnClickListener(view -> {
-            // Increment the round
+            saveButtonText();
             round[0]++;
             Log.d("GameActivity", "Setting up buttons for round " + round[0]);
-            // Set up the buttons for the next round
-            setupButtonsTxtNotOnRotate();
+            if (ButtonTextSaved[round[0]][0] == null) {
+                setupButtonsTxtNotOnRotate();
+            } else {
+                restoreButtonText();
+            }
             setNextButtonIfLastRound();
-            setImageViewCelebrity();
-            setButtonColor();
-            setOnClicks();
-
-
+            commonSetUp();
         });
     }
 
-    public void setButtonBack() {
-        // Set up the back button
+    public void setUpBackButton() {
         buttonBack.setOnClickListener(view -> {
-
-
-            // Set up the buttons for the next round
-            setupButtonsTxtNotOnRotate();
+            saveButtonText();
             if (round[0] == 0) {
-
                 Intent intent = new Intent(GameActivity.this, MainActivity.class);
                 finish();
                 startActivity(intent);
-
+            } else {
+                round[0]--;
+                Log.d("GameActivity", "Setting up buttons for round " + round[0]);
+                if (ButtonTextSaved[round[0]][0] == null) {
+                    setupButtonsTxtNotOnRotate();
+                } else {
+                    restoreButtonText();
+                }
+                commonSetUp();
             }
-            // Decrement the round
-            round[0]--;
-            Log.d("GameActivity", "Setting up buttons for round " + round[0]);
-            setNextButtonIfLastRound();
-            setupButtonsTxtNotOnRotate();
-            setImageViewCelebrity();
-            setButtonColor();
-            setOnClicks();
         });
+    }
+
+    private void commonSetUp() {
+        setNextButtonIfLastRound();
+        setImageViewCelebrity();
+        setButtonColor();
+        setOnClicks();
     }
 
     public void setNextButtonIfLastRound() {
@@ -229,15 +232,21 @@ public class GameActivity extends AppCompatActivity {
             });
         }
     }
-//    public void setBackButtonIfFirstRound() {
-//        if (round[0] == 0) {
-//            buttonBack.setOnClickListener(view -> {
-//                Intent intent = new Intent(GameActivity.this, MainActivity.class);
-//                finish();
-//                startActivity(intent);
-//            });
-//        }
-//    }
+
+    // Save the state of the game
+    public void saveButtonText() {
+        for (int i = 0; i < buttons.size(); i++) {
+            ButtonTextSaved[round[0]][i] = buttons.get(i).getText().toString();
+        }
+    }
+
+    // Restore the state of the game
+    public void restoreButtonText() {
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).setText(ButtonTextSaved[round[0]][i]);
+        }
+    }
+
 
     public static void resetGame() {
         round[0] = 0;

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="#1984BF"
+        android:background="@color/darkGray"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:gravity="center"
+            android:background="@drawable/shapes"
+            android:radius="8dp"
             android:text="@string/guess_the_celebrity_game"
             android:textSize="30sp" />
 
@@ -42,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:backgroundTint="#1984BF"
+            android:backgroundTint="@color/gray"
             android:text="@string/start_game"
             android:textColor="#000000" />
 
@@ -51,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:backgroundTint="#1984BF"
+            android:backgroundTint="@color/gray"
             android:text="@string/about_the_game"
             android:textColor="#000000" />
     </LinearLayout>

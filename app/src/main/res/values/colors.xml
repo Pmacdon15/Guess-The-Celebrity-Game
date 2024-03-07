@@ -5,6 +5,8 @@
     <color name="green">#4CAF50</color>
     <color name="red">#CC190C</color>
     <color name="blue">#1984BF</color>
+    <color name="gray">#9E9E9E</color>
+    <color name="darkGray">#424242</color>
     <color name="colorOfStatusBar">#1984BF</color>
 
 </resources>
