@@ -27,7 +27,7 @@ public class GameActivity extends AppCompatActivity {
     private int correctAnswer = 0; // Index of the correct answer
     private int incorrectAnswer = 0; // Index of the incorrect answer
     // To use lambda expression, the variable must be final so created an array to store the value which can be changed
-    private static final int[] round = {0}; // Index of the current round
+    private final int[] round = {0}; // Index of the current round
     private static String[][] ButtonTextSaved = new String[5][4];
 
     // 2D array of guesses for each round
@@ -79,6 +79,8 @@ public class GameActivity extends AppCompatActivity {
         // Save correct and incorrect answers
         outState.putInt("correctAnswer", correctAnswer);
         outState.putInt("incorrectAnswer", incorrectAnswer);
+        // Save the round
+        outState.putInt("round", round[0]);
 
     }
 
@@ -95,6 +97,8 @@ public class GameActivity extends AppCompatActivity {
             // Restore correct and incorrect answers
             correctAnswer = savedInstanceState.getInt("correctAnswer");
             incorrectAnswer = savedInstanceState.getInt("incorrectAnswer");
+            // Restore the round
+            round[0] = savedInstanceState.getInt("round");
 
             setUpNextButton();
             setUpBackButton();
@@ -259,7 +263,7 @@ public class GameActivity extends AppCompatActivity {
 
 
     public static void resetGame() {
-        round[0] = 0;
+        //round[0] = 0;
         //correctAnswer = 0;
         //incorrectAnswer = 0;
         // loop through the 2D array and set each element to null
