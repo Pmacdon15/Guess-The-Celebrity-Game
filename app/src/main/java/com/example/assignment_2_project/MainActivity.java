@@ -3,12 +3,13 @@ package com.example.assignment_2_project;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,14 +30,20 @@ public class MainActivity extends AppCompatActivity {
         Button buttonStartGame = findViewById(R.id.button_StartGame);
         buttonStartGame.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, GameActivity.class);
-//            GameActivity.resetGame();
+            // app works better if we don't finish the main activity until the game is over
+            finish();
             startActivity(intent);
         });
 
         Button buttonAboutGame = findViewById(R.id.button_AboutGame);
         buttonAboutGame.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+//            startActivity(intent);
+
+            Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialoguewindow);
+            TextView textViewInfo = dialog.findViewById(R.id.textViewInfo);
+            dialog.show();
         });
     }
 }

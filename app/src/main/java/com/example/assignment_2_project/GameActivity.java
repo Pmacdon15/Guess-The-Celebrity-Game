@@ -209,11 +209,12 @@ public class GameActivity extends AppCompatActivity {
         buttonNext.setOnClickListener(view -> {
             saveButtonText();
             if (round[0] == 4) {
-                buttonNext.setText(R.string.finish);
                 Intent intent = new Intent(GameActivity.this, ScoreActivity.class);
                 intent.putExtra("correct", correctAnswer);
                 intent.putExtra("incorrect", incorrectAnswer);
+                finish();
                 startActivity(intent);
+                return;
             }
             round[0]++;
             Log.d("GameActivity", "Setting up buttons for round " + round[0]);
@@ -222,7 +223,12 @@ public class GameActivity extends AppCompatActivity {
             } else {
                 restoreButtonText();
             }
-            //setNextButtonIfLastRound();
+
+            if (round[0] == 4)
+                buttonNext.setText(R.string.finish);
+            // Set the text of the back button
+            if (round[0] > 0)
+                buttonBack.setText(R.string.back);
             commonSetUp();
         });
     }
@@ -243,12 +249,17 @@ public class GameActivity extends AppCompatActivity {
                     restoreButtonText();
                 }
                 commonSetUp();
+                // Set the text of the next button
+                if (round[0] < 4)
+                    buttonNext.setText(R.string.next);
+                // Set the text of the back button
+                if (round[0] == 0)
+                    buttonBack.setText(R.string.backToMenu);
             }
         });
     }
 
     private void commonSetUp() {
-        //setNextButtonIfLastRound();
         setImageViewCelebrity();
         setOnClicks();
         setButtonColor();
@@ -267,16 +278,5 @@ public class GameActivity extends AppCompatActivity {
             buttons.get(i).setText(ButtonTextSaved[round[0]][i]);
         }
     }
-
-
-//    public static void resetGame() {
-//        //round[0] = 0;
-//        //correctAnswer = 0;
-//        //incorrectAnswer = 0;
-//        // loop through the 2D array and set each element to null
-//        for (String[] strings : ButtonTextSaved) {
-//            Arrays.fill(strings, null);
-//        }
-//    }
 
 }

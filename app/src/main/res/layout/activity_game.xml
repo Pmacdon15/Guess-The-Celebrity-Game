@@ -96,7 +96,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="#606370"
-                android:text="@string/back"
+                android:text="@string/backToMenu"
                 android:textColor="#000000" />
 
             <Button

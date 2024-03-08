@@ -39,8 +39,10 @@ public class ScoreActivity extends AppCompatActivity {
 
         Button buttonMenu = findViewById(R.id.button_Menu);
         buttonMenu.setOnClickListener(view -> {
+            // Close The Main Activity and Game Activity and start the Main Activity
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            //finish();
             startActivity(intent);
         });
     }
