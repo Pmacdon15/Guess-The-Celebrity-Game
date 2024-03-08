@@ -31,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
         buttonStartGame.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, GameActivity.class);
             // app works better if we don't finish the main activity until the game is over
-            finish();
+
             startActivity(intent);
+            finish();
         });
 
         Button buttonAboutGame = findViewById(R.id.button_AboutGame);

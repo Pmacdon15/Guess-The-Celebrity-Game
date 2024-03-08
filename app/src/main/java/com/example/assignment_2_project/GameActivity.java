@@ -212,8 +212,8 @@ public class GameActivity extends AppCompatActivity {
                 Intent intent = new Intent(GameActivity.this, ScoreActivity.class);
                 intent.putExtra("correct", correctAnswer);
                 intent.putExtra("incorrect", incorrectAnswer);
-                finish();
                 startActivity(intent);
+                finish();
                 return;
             }
             round[0]++;

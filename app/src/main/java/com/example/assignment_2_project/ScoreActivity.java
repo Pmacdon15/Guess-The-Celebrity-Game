@@ -42,8 +42,8 @@ public class ScoreActivity extends AppCompatActivity {
             // Close The Main Activity and Game Activity and start the Main Activity
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            //finish();
             startActivity(intent);
+            finish();
         });
     }
 }
