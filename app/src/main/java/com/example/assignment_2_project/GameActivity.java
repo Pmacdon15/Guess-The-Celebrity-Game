@@ -28,7 +28,7 @@ public class GameActivity extends AppCompatActivity {
     private int incorrectAnswer = 0; // Index of the incorrect answer
     // To use lambda expression, the variable must be final so created an array to store the value which can be changed
     private final int[] round = {0}; // Index of the current round
-    private static String[][] ButtonTextSaved = new String[5][4];
+    private final String[][] ButtonTextSaved = new String[5][4];
 
     // 2D array of guesses for each round
     private final String[][] guesses = {
@@ -81,6 +81,10 @@ public class GameActivity extends AppCompatActivity {
         outState.putInt("incorrectAnswer", incorrectAnswer);
         // Save the round
         outState.putInt("round", round[0]);
+        // Save the state ButtonTextSaved
+        for (int i = 0; i < ButtonTextSaved.length; i++) {
+            outState.putStringArray("ButtonTextSaved" + i, ButtonTextSaved[i]);
+        }
 
     }
 
@@ -99,11 +103,14 @@ public class GameActivity extends AppCompatActivity {
             incorrectAnswer = savedInstanceState.getInt("incorrectAnswer");
             // Restore the round
             round[0] = savedInstanceState.getInt("round");
+            // Restore the state ButtonTextSaved
+            for (int i = 0; i < ButtonTextSaved.length; i++) {
+                ButtonTextSaved[i] = savedInstanceState.getStringArray("ButtonTextSaved" + i);
+            }
 
             setUpNextButton();
             setUpBackButton();
             commonSetUp();
-
 
         }
     }
@@ -262,14 +269,14 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-    public static void resetGame() {
-        //round[0] = 0;
-        //correctAnswer = 0;
-        //incorrectAnswer = 0;
-        // loop through the 2D array and set each element to null
-        for (String[] strings : ButtonTextSaved) {
-            Arrays.fill(strings, null);
-        }
-    }
+//    public static void resetGame() {
+//        //round[0] = 0;
+//        //correctAnswer = 0;
+//        //incorrectAnswer = 0;
+//        // loop through the 2D array and set each element to null
+//        for (String[] strings : ButtonTextSaved) {
+//            Arrays.fill(strings, null);
+//        }
+//    }
 
 }
