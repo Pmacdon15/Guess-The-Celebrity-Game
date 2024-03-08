@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/darkGray"
+        android:background="@color/gray"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Menu"
-        app:titleTextColor="#FFFFFF" />
+        app:titleTextColor="#000000" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -34,10 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:gravity="center"
             android:background="@drawable/shapes"
+            android:gravity="center"
             android:radius="8dp"
             android:text="@string/guess_the_celebrity_game"
+            android:textColor="#000000"
             android:textSize="30sp" />
 
         <Button

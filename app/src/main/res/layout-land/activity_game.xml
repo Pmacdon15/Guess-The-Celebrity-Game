@@ -3,20 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/mugshotbackground"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#1984BF"
+        android:background="@color/gray"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/guess_the_celebrity_game"
-        app:titleTextColor="#FFFFFF" />
+        app:titleTextColor="@color/darkGray" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -50,10 +51,10 @@
                 android:id="@+id/button_Answer1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:backgroundTint="#1984BF"
+                android:layout_marginTop="30dp"
                 android:text="@string/filler"
-                android:textColor="#000000"
+                android:backgroundTint="@color/darkGray"
+                android:textColor="#FFFFFF"
                 tools:ignore="DuplicateSpeakableTextCheck" />
 
             <Button
@@ -61,38 +62,64 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:backgroundTint="#1984BF"
+                android:backgroundTint="@color/darkGray"
+                android:textColor="#FFFFFF"
                 android:text="@string/filler"
-                android:textColor="#000000" />
+                />
 
             <Button
                 android:id="@+id/button_Answer3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:backgroundTint="#1984BF"
+                android:backgroundTint="@color/darkGray"
+                android:textColor="#FFFFFF"
                 android:text="@string/filler"
-                android:textColor="#000000" />
+                />
 
             <Button
                 android:id="@+id/button_Answer4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:backgroundTint="#1984BF"
                 android:text="@string/filler"
-                android:textColor="#000000" />
+                android:backgroundTint="@color/darkGray"
+                android:textColor="#FFFFFF" />
 
-            <Button
-                android:id="@+id/button_Next"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:backgroundTint="#2DC312"
-                android:minHeight="48dp"
-                android:text="@string/next"
-                android:textColor="#4E342E" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/button_Back"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#606370"
+                    android:text="@string/back"
+                    android:textColor="#E0E0E0" />
+
+                <Button
+                    android:id="@+id/button_Next"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#2AAA13"
+                    android:text="@string/next"
+                    android:textColor="#3E2723" />
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

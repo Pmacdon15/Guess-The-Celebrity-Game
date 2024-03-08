@@ -8,5 +8,6 @@
     <color name="gray">#9E9E9E</color>
     <color name="darkGray">#424242</color>
     <color name="colorOfStatusBar">#1984BF</color>
+    <color name="balck">#000000</color>
 
 </resources>

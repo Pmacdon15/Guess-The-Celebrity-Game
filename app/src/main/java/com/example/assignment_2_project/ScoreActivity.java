@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 
 public class ScoreActivity extends AppCompatActivity {
@@ -21,7 +22,8 @@ public class ScoreActivity extends AppCompatActivity {
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.parseColor("#1984BF"));
+        int statusBarColor = ContextCompat.getColor(this, R.color.gray);
+        window.setStatusBarColor(statusBarColor);
 
         // Get the score from the intent
         Intent intentValue = getIntent();

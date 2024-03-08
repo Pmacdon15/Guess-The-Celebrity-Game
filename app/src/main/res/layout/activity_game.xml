@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/guess_the_celebrity_game"
-        app:titleTextColor="@color/darkGray" />
+        app:titleTextColor="#000000" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -48,8 +48,9 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/darkGray"
-            android:text="@string/filler"
             android:textColor="#FFFFFF"
+            android:text="@string/filler"
+
             tools:ignore="DuplicateSpeakableTextCheck" />
 
         <Button
@@ -89,9 +90,7 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginStart="10dp"
-
                 android:layout_marginLeft="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
@@ -105,9 +104,7 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginStart="10dp"
-
                 android:layout_marginLeft="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"

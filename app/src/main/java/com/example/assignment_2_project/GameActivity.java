@@ -8,9 +8,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +29,7 @@ public class GameActivity extends AppCompatActivity {
     private static int incorrectAnswer = 0; // Index of the incorrect answer
     // To use lambda expression, the variable must be final so created an array to store the value which can be changed
     private static final int[] round = {0}; // Index of the current round
-    private String[][] ButtonTextSaved = new String[5][4];
+    private static String[][] ButtonTextSaved = new String[5][4];
 
     // 2D array of guesses for each round
     private final String[][] guesses = {
@@ -60,9 +62,7 @@ public class GameActivity extends AppCompatActivity {
         // Restore the state if available if not call these in the on restore instance state
         if (savedInstanceState == null) {
             setupButtonsTxtNotOnRotate();
-            setUpNextButton();
             commonSetUp();
-
             setUpNextButton();
             setUpBackButton();
         }
@@ -77,6 +77,7 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < buttons.size(); i++) {
             outState.putString("buttonText" + i, buttons.get(i).getText().toString());
         }
+
     }
 
     @Override
@@ -92,6 +93,7 @@ public class GameActivity extends AppCompatActivity {
 
             setUpNextButton();
             setUpBackButton();
+            commonSetUp();
 
 
         }
@@ -102,7 +104,8 @@ public class GameActivity extends AppCompatActivity {
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.parseColor("#1984BF"));
+        int statusBarColor = ContextCompat.getColor(this, R.color.gray);
+        window.setStatusBarColor(statusBarColor);
     }
 
     public void setFields() {
@@ -127,12 +130,11 @@ public class GameActivity extends AppCompatActivity {
     public void setButtonColor() {
         for (Button button : buttons) {
             Log.d("GameActivity", "Setting up button " + button.getText().toString());
-            if (button.getText().toString().equals("Correct!")){
+            if (button.getText().toString().equals("Correct!")) {
                 button.setBackgroundColor(getResources().getColor(R.color.green, null));
                 // Turn off on click listener for the correct button
                 button.setOnClickListener(null);
-            }
-            else if (button.getText().toString().equals("Incorrect")) {
+            } else if (button.getText().toString().equals("Incorrect")) {
                 button.setBackgroundColor(getResources().getColor(R.color.red, null));
                 // Turn off on click listener for the correct button
                 button.setOnClickListener(null);
@@ -151,12 +153,16 @@ public class GameActivity extends AppCompatActivity {
                     button.setText(R.string.correct);
                     correctAnswer++;
                     Log.d("correctAnswer", "Correct answer: " + correctAnswer);
+                    // Turn off on click listener for the correct button
+                    Toast.makeText(GameActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
+                    button.setOnClickListener(null);
                 } else {
                     // This is not the correct answer
                     button.setBackgroundColor(getResources().getColor(R.color.red, null));
                     button.setText(R.string.incorrect);
                     incorrectAnswer++;
                     Log.d("incorrectAnswer", "Incorrect answer: " + incorrectAnswer);
+                    Toast.makeText(GameActivity.this, "Incorrect", Toast.LENGTH_SHORT).show();
                     // Turn off on click listener for the incorrect button
                     button.setOnClickListener(null);
                 }
@@ -186,6 +192,13 @@ public class GameActivity extends AppCompatActivity {
     public void setUpNextButton() {
         buttonNext.setOnClickListener(view -> {
             saveButtonText();
+            if (round[0] == 4) {
+                buttonNext.setText(R.string.finish);
+                Intent intent = new Intent(GameActivity.this, ScoreActivity.class);
+                intent.putExtra("correct", correctAnswer);
+                intent.putExtra("incorrect", incorrectAnswer);
+                startActivity(intent);
+            }
             round[0]++;
             Log.d("GameActivity", "Setting up buttons for round " + round[0]);
             if (ButtonTextSaved[round[0]][0] == null) {
@@ -193,7 +206,7 @@ public class GameActivity extends AppCompatActivity {
             } else {
                 restoreButtonText();
             }
-            setNextButtonIfLastRound();
+            //setNextButtonIfLastRound();
             commonSetUp();
         });
     }
@@ -219,23 +232,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void commonSetUp() {
-        setNextButtonIfLastRound();
+        //setNextButtonIfLastRound();
         setImageViewCelebrity();
         setOnClicks();
         setButtonColor();
-    }
-
-    public void setNextButtonIfLastRound() {
-        // Change the text of the next button to "Finish" if it's the last round
-        if (round[0] == 4) {
-            buttonNext.setText(R.string.finish);
-            buttonNext.setOnClickListener(view -> {
-                Intent intent = new Intent(GameActivity.this, ScoreActivity.class);
-                intent.putExtra("correct", correctAnswer);
-                intent.putExtra("incorrect", incorrectAnswer);
-                startActivity(intent);
-            });
-        }
     }
 
     // Save the state of the game
@@ -257,6 +257,10 @@ public class GameActivity extends AppCompatActivity {
         round[0] = 0;
         correctAnswer = 0;
         incorrectAnswer = 0;
+        // loop through the 2D array and set each element to null
+        for (String[] strings : ButtonTextSaved) {
+            Arrays.fill(strings, null);
+        }
     }
 
 }

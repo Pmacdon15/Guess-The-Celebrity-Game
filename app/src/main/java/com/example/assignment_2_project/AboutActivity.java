@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -20,7 +21,9 @@ public class AboutActivity extends AppCompatActivity {
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.parseColor("#1984BF"));
+        //window.setStatusBarColor(Color.parseColor("#1984BF"));
+        int statusBarColor = ContextCompat.getColor(this, R.color.gray);
+        window.setStatusBarColor(statusBarColor);
 
     }
     public void WrapUp(View view) {
