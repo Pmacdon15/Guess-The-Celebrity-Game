@@ -24,13 +24,9 @@ public class MainActivity extends AppCompatActivity {
         int statusBarColor = ContextCompat.getColor(this, R.color.gray);
         window.setStatusBarColor(statusBarColor);
 
-
-
         Button buttonStartGame = findViewById(R.id.button_StartGame);
         buttonStartGame.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, GameActivity.class);
-            // app works better if we don't finish the main activity until the game is over
-
             startActivity(intent);
             finish();
         });

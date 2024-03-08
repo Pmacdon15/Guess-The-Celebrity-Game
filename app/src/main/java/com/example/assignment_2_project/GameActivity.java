@@ -202,13 +202,11 @@ public class GameActivity extends AppCompatActivity {
         for (String[] row : guesses) {
             List<String> names = Arrays.asList(row);
             Collections.shuffle(names);
-            //row = names.toArray(new String[0]);
         }
         // Loop through the buttons and set the text
         for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setText(guesses[round[0]][i]);
         }
-        //saveButtonText();
     }
 
     public void setUpNextButton() {
