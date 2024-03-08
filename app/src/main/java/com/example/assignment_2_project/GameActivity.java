@@ -85,6 +85,9 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < ButtonTextSaved.length; i++) {
             outState.putStringArray("ButtonTextSaved" + i, ButtonTextSaved[i]);
         }
+        // Save BackButton and NextButton text
+        outState.putString("buttonNext", buttonNext.getText().toString());
+        outState.putString("buttonBack", buttonBack.getText().toString());
 
     }
 
@@ -107,6 +110,9 @@ public class GameActivity extends AppCompatActivity {
             for (int i = 0; i < ButtonTextSaved.length; i++) {
                 ButtonTextSaved[i] = savedInstanceState.getStringArray("ButtonTextSaved" + i);
             }
+            // Restore BackButton and NextButton text
+            buttonNext.setText(savedInstanceState.getString("buttonNext"));
+            buttonBack.setText(savedInstanceState.getString("buttonBack"));
 
             setUpNextButton();
             setUpBackButton();
