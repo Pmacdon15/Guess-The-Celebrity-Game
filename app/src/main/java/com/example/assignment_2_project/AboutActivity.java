@@ -1,7 +1,7 @@
 package com.example.assignment_2_project;
 
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -27,6 +27,10 @@ public class AboutActivity extends AppCompatActivity {
 
     }
     public void WrapUp(View view) {
+        // Close about activity and start the main activity
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+
         this.finish();
     }
 }

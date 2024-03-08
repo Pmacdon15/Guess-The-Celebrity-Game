@@ -244,8 +244,8 @@ public class GameActivity extends AppCompatActivity {
             saveButtonText();
             if (round[0] == 0) {
                 Intent intent = new Intent(GameActivity.this, MainActivity.class);
-                finish();
                 startActivity(intent);
+                finish();
             } else {
                 round[0]--;
                 Log.d("GameActivity", "Setting up buttons for round " + round[0]);
