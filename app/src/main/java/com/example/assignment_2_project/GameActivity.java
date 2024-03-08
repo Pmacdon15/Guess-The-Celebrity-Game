@@ -1,7 +1,6 @@
 package com.example.assignment_2_project;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -25,8 +24,8 @@ public class GameActivity extends AppCompatActivity {
     private Button buttonAnswer1, buttonAnswer2, buttonAnswer3, buttonAnswer4;
     private ArrayList<Button> buttons;
     private final int[] resourceFiles = {R.drawable.cosby, R.drawable.tyson, R.drawable.kidrock, R.drawable.rdj, R.drawable.charliesheen};
-    private static int correctAnswer = 0; // Index of the correct answer
-    private static int incorrectAnswer = 0; // Index of the incorrect answer
+    private int correctAnswer = 0; // Index of the correct answer
+    private int incorrectAnswer = 0; // Index of the incorrect answer
     // To use lambda expression, the variable must be final so created an array to store the value which can be changed
     private static final int[] round = {0}; // Index of the current round
     private static String[][] ButtonTextSaved = new String[5][4];
@@ -77,6 +76,9 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < buttons.size(); i++) {
             outState.putString("buttonText" + i, buttons.get(i).getText().toString());
         }
+        // Save correct and incorrect answers
+        outState.putInt("correctAnswer", correctAnswer);
+        outState.putInt("incorrectAnswer", incorrectAnswer);
 
     }
 
@@ -90,6 +92,9 @@ public class GameActivity extends AppCompatActivity {
                 String buttonText = savedInstanceState.getString("buttonText" + i);
                 buttons.get(i).setText(buttonText);
             }
+            // Restore correct and incorrect answers
+            correctAnswer = savedInstanceState.getInt("correctAnswer");
+            incorrectAnswer = savedInstanceState.getInt("incorrectAnswer");
 
             setUpNextButton();
             setUpBackButton();
@@ -255,8 +260,8 @@ public class GameActivity extends AppCompatActivity {
 
     public static void resetGame() {
         round[0] = 0;
-        correctAnswer = 0;
-        incorrectAnswer = 0;
+        //correctAnswer = 0;
+        //incorrectAnswer = 0;
         // loop through the 2D array and set each element to null
         for (String[] strings : ButtonTextSaved) {
             Arrays.fill(strings, null);
